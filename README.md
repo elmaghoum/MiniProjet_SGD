@@ -67,21 +67,39 @@ Afin de realiser de l’analyse décisionnelle nous aurons besoins des fonctionn
 - Afficher la moyenne des notes attribuées à chaque film.
 - Etc
 
-# Exemple de Requete MongoDB
-Repertoire Insertions_des_donnees contient les 3 collections de travail :
-	- Scripts d'insertion (insertMany) des collections: avis, cinemas, films 
+# Exemple de Requête MongoDB
 
-Repertoire Requetes_Mongo contient des script de requêtes:
-	- find dans le fichier "Requete-Find"
-	- aggregate dans le fichier "Requete-Aggregate"
-	- Map-Reduce dans le fichier "Requete-Map-Reduce"
-	- delete dans le fichier "Requete_delete"
-	- update dans le fichier "Requete_update"
-	- Ensemble de ces script + resultat "Requetes_Resultats"
-	
-Repertoire Scripts_Python contient des script de requêtes Python:
-	- Sans pipiline dans le fichier "req_python_sans_pipeline.py"
-	- Avec pipiline dans le fichier "req_python_pipeline.py" 
+Ce projet contient plusieurs répertoires avec des scripts pour l'insertion et l'exécution de requêtes sur les collections de données.
+
+## Répertoires et Contenus
+
+### 1. Répertoire `Insertions_des_donnees`
+
+Ce répertoire contient les scripts d'insertion des données pour les trois collections de travail :
+
+- **Scripts d'insertion** (insertMany) des collections :
+  - **avis**
+  - **cinemas**
+  - **films**
+
+### 2. Répertoire `Requetes_Mongo`
+
+Ce répertoire contient des scripts de requêtes MongoDB :
+
+- **find** dans le fichier `Requete-Find`
+- **aggregate** dans le fichier `Requete-Aggregate`
+- **Map-Reduce** dans le fichier `Requete-Map-Reduce`
+- **delete** dans le fichier `Requete_delete`
+- **update** dans le fichier `Requete_update`
+- Ensemble de ces scripts + résultats dans le fichier `Requetes_Resultats`
+
+### 3. Répertoire `Scripts_Python`
+
+Ce répertoire contient des scripts de requêtes en Python :
+
+- **Sans pipeline** dans le fichier `req_python_sans_pipeline.py`
+- **Avec pipeline** dans le fichier `req_python_pipeline.py`
+
 
 # Conclusion
 
