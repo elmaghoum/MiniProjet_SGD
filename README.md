@@ -114,7 +114,7 @@ MongoDB s’ajoutera désormais à notre arsenal d’outils pour notre formation
 
 
 
-# AUTEUR
+# AUTEURS
 - AMZAL Idir
 - EL MAGHOUM Fayçal
 
