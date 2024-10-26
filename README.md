@@ -113,4 +113,9 @@ Et bien sûr, ce projet nous a permis de mettre un pied (rapide et général) da
 MongoDB s’ajoutera désormais à notre arsenal d’outils pour notre formation pédagogique et professionnelle.
 
 
+
+# AUTEUR
+- AMZAL Idir
+- EL MAGHOUM Fayçal
+
 --- Mai 2024
