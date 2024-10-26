@@ -52,20 +52,20 @@ Cette collection est composée des attributs suivants :
 
 # Remarque
 Pour réaliser un lien/association entre deux collections on utilisera un attribut comment entre les deux collections.
-— Attribut commum entre la collection Films et la collection Avis : l’id du film
-— Attribut commum entre la collection Films et la collection Cinemas : l’id du cinéma
-— Attribut commum entre la collection Avis et la collection Cinemas : Aucun. Il faudra passé par la collection Film.
+- Attribut commum entre la collection Films et la collection Avis : l’id du film
+- Attribut commum entre la collection Films et la collection Cinemas : l’id du cinéma
+- Attribut commum entre la collection Avis et la collection Cinemas : Aucun. Il faudra passé par la collection Film.
 
 # Exemple de fonctionnalités
 Afin de realiser de l’analyse décisionnelle nous aurons besoins des fonctionnalités suivantes :
-— Afficher la liste des films, des cinémas et des avis.
-— Afficher les détails (titre, durée, catégorie(s), ...), (nom du cinéma, adresse, ...), (note, nom du réseau social).
-— Pouvoir trié les films grâce à leurs attributs.
-— Pouvoir faire la recherche de films/cinémas/avis par attributs (titre, catégorie, date de sortie/adresse, nom du cinéma/ films, note, réseau social ...).
-— Donnée des statistiques sur les films comme le nombre total de films, le nombre de film par catégorie et la moyenne des notes pour un même film dans different cinémas.
-— Pouvoir faire l’analyse des performances (nombre d’entrée) d’une salle ou d’un cinémas en particulier.
-— Afficher la moyenne des notes attribuées à chaque film.
-— Etc
+- Afficher la liste des films, des cinémas et des avis.
+- Afficher les détails (titre, durée, catégorie(s), ...), (nom du cinéma, adresse, ...), (note, nom du réseau social).
+- Pouvoir trié les films grâce à leurs attributs.
+- Pouvoir faire la recherche de films/cinémas/avis par attributs (titre, catégorie, date de sortie/adresse, nom du cinéma/ films, note, réseau social ...).
+- Donnée des statistiques sur les films comme le nombre total de films, le nombre de film par catégorie et la moyenne des notes pour un même film dans different cinémas.
+- Pouvoir faire l’analyse des performances (nombre d’entrée) d’une salle ou d’un cinémas en particulier.
+- Afficher la moyenne des notes attribuées à chaque film.
+- Etc
 
 # Exemple de Requete MongoDB
 Repertoire Insertions_des_donnees contient les 3 collections de travail :
