@@ -1,0 +1,141 @@
+//************************** update films
+
+// Modifie le nom du realisateur 
+db.films.updateOne(
+    { "titre": "The Shawshank Redemption" },
+    { $set: { "realisateur": "Frank Darabont" } }
+)
+
+// Modifie la duree d'un film
+db.films.updateOne(
+    { "titre": "The Dark Knight" },
+    { $set: { "duree": 155 } }
+)
+
+// Ajoute la categorie "Crime" pour tous les films qui contiennent la categorie "Drama"
+db.films.updateMany(
+    { "categorie": "Drama" },
+    { $addToSet: { "categorie": "Crime" } }
+)
+
+// Ajoute la categorie "Long Métrage" pour tous les films dont la durée est superieur a 150 min
+db.films.updateMany(
+    { "duree": { $gte: 150 } },
+    { $set: { "categorie": ["Long Métrage"] } }
+)
+
+// Retirer le dernier element du tableau categorie du film "The Dark Knight"
+db.films.updateOne(
+	{ "titre": "The Dark Knight" },
+	{ $pop : { "categorie" : 1 } }
+)
+
+// Ajouter plusieurs categorie au film "Titanic"
+db.films.updateOne(
+   { "titre": "Titanic" }, 
+   { $push: { "categorie": { $each: ["Drama", "Aventure"] } } }
+)
+
+
+// Remplacer toutes les informations du film "Forrest Gump"
+db.films.replaceOne(
+    { "titre": "Forrest Gump" },
+    {
+        "titre": "Forrest Gump: The Return",
+        "realisateur": "Robert Zemeckis",
+        "duree": 160,
+        "date_de_sortie": ISODate("1994-07-06T00:00:00Z"),
+        "description": "La suite tant attendue des aventures de Forrest Gump alors qu'il continue de voyager à travers l'histoire de l'Amérique.",
+        "categorie": ["Drama", "Adventure"],
+        "salles_diffusion": [
+            {
+                "num_salle": 1,
+                "nombre_place": 350,
+                "date_diffusion": ISODate("1994-07-07T00:00:00Z"),
+                "heure_diffusion": "18h30",
+                "nombre_entrees": 320,
+                "cinema_id": ObjectId("60527b186168afabf7e0c0ea")
+            },
+            {
+                "num_salle": 2,
+                "nombre_place": 400,
+                "date_diffusion": ISODate("1994-07-08T00:00:00Z"),
+                "heure_diffusion": "21h00",
+                "nombre_entrees": 370,
+                "cinema_id": ObjectId("60527b186168afabf7e0c0ea")
+            }
+        ]
+    }
+)
+
+
+
+//************************** update cinemas
+
+// Modifie l'adresse du "Cinéma Olympia"
+db.cinemas.updateOne(
+    { "nom": "Cinéma Olympia" },
+    { $set: { "adresse": "123 Rue de la Paix" } }
+)
+
+
+// Modifie le nom des cinemas qui sont situé a Paris 
+db.cinemas.updateMany(
+    { "ville": "Paris" },
+    { $set: { "ville": "Nice" } }
+)
+
+// Remplace le nom, l'adresse et la ville du cinema "Pathé Vieux Port"
+db.cinemas.replaceOne(
+    { "nom": "Pathé Vieux Port" },
+    {
+        "nom": "Pathé Marseille",
+        "adresse": "36 Quai Rive Neuve",
+        "ville": "Marseille"
+    }
+)
+
+
+
+
+
+//*************************** update avis
+// Modifie la note donnée par lucas 
+db.avis.updateOne(
+    { "nom_utilisateur": "lucas" },
+    { $set: { "note": 3 } }
+)
+
+// Modifie le nom du reseau social 
+db.avis.updateOne(
+    { "nom_utilisateur": "sophie" },
+    { $set: { "reseau_social": "Twitter" } }
+)
+
+// Modifie le nom du reseau social de tout les avis avec un note>4.5
+db.avis.updateMany(
+    { "note": { $gte: 4.5 } },
+    { $set: { "reseau_social": "LinkedIn" } }
+)
+
+// Modifie le nom du reseau social de tout les avis qui date du 01/01/2022
+db.avis.updateMany(
+    { "date_commentaire": { $lt: ISODate("2022-01-01T00:00:00Z") } },
+    { $set: { "reseau_social": "Reddit" } }
+)
+
+// Remplace le commentaire de thomas par celui ci : 
+db.avis.replaceOne(
+    { "nom_utilisateur": "thomas" },
+    {
+        "film_id": ObjectId("60527b186168afabf7e0c0e4"),
+        "nom_utilisateur": "thomas",
+        "commentaire": "Un film qui mérite d'être vu",
+        "note": 3.9,
+        "reseau_social": "Facebook",
+        "date_commentaire": ISODate("2022-08-15T00:00:00Z")
+    }
+)
+
+
+

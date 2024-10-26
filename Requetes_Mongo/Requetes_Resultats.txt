@@ -1,0 +1,661 @@
+------------------------------------------------ REQUETE FIND ------------------------------------------------ 
+
+// Requête qui affiche le nom de tous les cinémas de Dijon :
+db.cinemas.find({ ville: "Dijon" }, { nom: 1, _id: 0 })
+/* Resultat
+{
+    "nom" : "Cinéma Olympia"
+}
+{
+    "nom" : "Pathé Dijon"
+}
+/*
+
+// Récupérer tous les cinémas situés dans une ville donnée
+db.cinemas.find({ ville: "Paris" })
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e7"),
+    "nom" : "Gaumont Opéra Capucines",
+    "adresse" : "2 Boulevard des Capucines",
+    "ville" : "Paris"
+}
+
+
+// Requête qui affiche le nom de tous les cinémas :
+db.cinemas.find({}, { nom: 1, _id: 0 })
+/* Resultat
+{
+    "nom" : "Cinéma Olympia"
+}
+{
+    "nom" : "Pathé Dijon"
+}
+{
+    "nom" : "Ciné Cap Vert"
+}
+{
+    "nom" : "Gaumont Opéra Capucines"
+}
+{
+    "nom" : "Pathé Vieux Port"
+}
+*/
+
+
+// Requête qui affiche toutes les infos du film "Titanic" :
+db.films.find({ titre: "Titanic" })
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e2"),
+    "titre" : "Titanic",
+    "realisateur" : "James Cameron",
+    "duree" : 194.0,
+    "date_de_sortie" : ISODate("2004-12-10T00:00:00.000Z"),
+    "description" : "",
+    "categorie" : [ 
+        "Action", 
+        "Romance"
+    ],
+    "salles_diffusion" : [ 
+        {
+            "num_salle" : 2.0,
+            "nombre_place" : 100.0,
+            "date_diffusion" : ISODate("2005-07-01T00:00:00.000Z"),
+            "heure_diffusion" : "21h10",
+            "nombre_entrees" : 100.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0e3")
+        }
+    ]
+}
+
+// Requête qui affiche le titre, le réalisateur, la durée et les catégories du film "Inception" :
+db.films.find({ titre: "Inception" }, { titre: 1, realisateur: 1, duree: 1, categorie: 1, _id: 0 })
+{
+    "titre" : "Inception",
+    "realisateur" : "Christopher Nolan",
+    "duree" : 148.0,
+    "categorie" : [ 
+        "Science-fiction"
+    ]
+}
+
+// Requête qui affiche tous les commentaires avec une note égale à 5 :
+db.avis.find({ note: 5})
+{
+    "_id" : ObjectId("65f6ccf30d6c607d7126f655"),
+    "film_id" : ObjectId("60527b186168afabf7e0c0e2"),
+    "nom_utilisateur" : "kevin",
+    "commentaire" : "Un chef-d'oeuvre absolu !",
+    "note" : 5.0,
+    "reseau_social" : "Facebook",
+    "date_commentaire" : ISODate("2011-01-07T00:00:00.000Z")
+}
+{
+    "_id" : ObjectId("65f6ccf30d6c607d7126f65b"),
+    "film_id" : ObjectId("60527b186168afabf7e0c0e2"),
+    "nom_utilisateur" : "adam",
+    "commentaire" : "Une experience cinematographique revolutionnaire !",
+    "note" : 5.0,
+    "reseau_social" : "Facebook",
+    "date_commentaire" : ISODate("2017-05-18T00:00:00.000Z")
+}
+
+// Requête qui affiche tous les commentaires avec une note inférieure à 3 :
+db.avis.find({ note: { $lt: 3 } })
+{
+    "_id" : ObjectId("65f6ccf30d6c607d7126f657"),
+    "film_id" : ObjectId("60527b186168afabf7e0c0e4"),
+    "nom_utilisateur" : "lucas",
+    "commentaire" : "Trop long ! ",
+    "note" : 2.0,
+    "reseau_social" : "Twitter",
+    "date_commentaire" : ISODate("2012-08-29T00:00:00.000Z")
+}
+
+// Requête qui affiche tous les films qui durent entre 60min et 140min :
+db.films.find({ duree: { $gte: 60, $lte: 140 } })
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e7"),
+    "titre" : "Fight Club",
+    "realisateur" : "David Fincher",
+    "duree" : 139.0,
+    "date_de_sortie" : ISODate("1999-10-15T00:00:00.000Z"),
+    "description" : "Un employé de bureau insomniaque et un savonnier insouciant forment un club de combat clandestin qui évolue vers quelque chose de bien plus encore...",
+    "categorie" : [ 
+        "Thriller", 
+        "Drama", 
+        "Action"
+    ],
+    "salles_diffusion" : [ 
+        {
+            "num_salle" : 1.0,
+            "nombre_place" : 200.0,
+            "date_diffusion" : ISODate("1999-10-16T00:00:00.000Z"),
+            "heure_diffusion" : "19h30",
+            "nombre_entrees" : 180.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0e7")
+        }, 
+        {
+            "num_salle" : 17.0,
+            "nombre_place" : 250.0,
+            "date_diffusion" : ISODate("1999-10-17T00:00:00.000Z"),
+            "heure_diffusion" : "22h00",
+            "nombre_entrees" : 230.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0e8")
+        }
+    ]
+}
+
+// Requête qui affiche tous les films qui durent plus de 3 heures :
+db.films.find({ duree: { $gt: 180 } })
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e2"),
+    "titre" : "Titanic",
+    "realisateur" : "James Cameron",
+    "duree" : 194.0,
+    "date_de_sortie" : ISODate("2004-12-10T00:00:00.000Z"),
+    "description" : "",
+    "categorie" : [ 
+        "Action", 
+        "Romance"
+    ],
+    "salles_diffusion" : [ 
+        {
+            "num_salle" : 2.0,
+            "nombre_place" : 100.0,
+            "date_diffusion" : ISODate("2005-07-01T00:00:00.000Z"),
+            "heure_diffusion" : "21h10",
+            "nombre_entrees" : 100.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0e3")
+        }
+    ]
+}
+
+
+
+------------------------------------------------ REQUETE AGGREGATE ------------------------------------------------ 
+
+
+// Calculer la moyenne des notes attribuées à chaque film
+db.avis.aggregate([
+{ $group: { _id: "$film_id", moyenne_note: { $avg: "$note" } } }
+])
+/* Resultat : 
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e3"),
+    "moyenne_note" : 3.5
+}
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e6"),
+    "moyenne_note" : 4.8
+}
+
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e2"),
+    "moyenne_note" : 5.0
+}
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e7"),
+    "moyenne_note" : 4.0
+}
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e1"),
+    "moyenne_note" : 4.8
+}
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e4"),
+    "moyenne_note" : 3.0
+}
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e5"),
+    "moyenne_note" : 3.95
+}
+*/
+
+
+// Afficher le nom des cinémas où a été diffusée le film "Titanic"
+db.films.aggregate([
+  // Filtre pour les documents correspondant au film "Titanic"
+  { $match: { titre: "Titanic" } },
+  // Développe le tableau des salles_diffusion pour chaque film
+  { $unwind: "$salles_diffusion" },
+  // Jointure avec la collection des cinémas pour récupérer le nom
+  {
+    $lookup: {
+      from: "cinemas",
+      localField: "salles_diffusion.cinema_id",
+      foreignField: "_id",
+      as: "cinema"
+    }
+  },
+  // Projette uniquement le nom des cinémas
+  { $project: { _id: 0, "cinema.nom": 1 } }
+])
+
+/* Resultat : 
+{
+    "cinema" : [ 
+        {
+            "nom" : "Cinéma Olympia"
+        }
+    ]
+}
+/*
+
+
+// Afficher les titres des films qui ont été diffusé à dijon (sans les doublons)
+db.films.aggregate([
+  {
+    $lookup: {
+      from: "cinemas",
+      localField: "salles_diffusion.cinema_id",
+      foreignField: "_id",
+      as: "cinema"
+    }
+  },
+  {
+    $match: {
+      "cinema.ville": "Dijon"
+    }
+  },
+  {
+    $group: {
+      _id: "$_id",
+      titre: { $first: "$titre" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      titre: 1
+    }
+  }
+])
+/* Resultat :  
+{
+    "titre" : "Inception"
+}
+{
+    "titre" : "Titanic"
+}
+{
+    "titre" : "The Shawshank Redemption"
+}
+{
+    "titre" : "The Dark Knight"
+}
+*/
+
+// Afficher tous les films qui sont sorties entre le 1er janvier 1990 et le 31 decembre 2000 
+db.films.aggregate([
+  {
+    $match: {
+      "date_de_sortie": {
+        $gte: ISODate("1990-01-01"),
+        $lte: ISODate("2000-12-31")
+      }
+    }
+  }
+])
+
+/* Resultat : 
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e4"),
+    "titre" : "The Shawshank Redemption",
+    "realisateur" : "Frank Darabont",
+    "duree" : 142.0,
+    "date_de_sortie" : ISODate("1994-10-14T00:00:00.000Z"),
+    "description" : "Deux hommes emprisonnés se lient pendant plusieurs années, trouvant du réconfort et une éventuelle rédemption grâce à des actes de décence commune...",
+    "categorie" : [ 
+        "Drama"
+    ],
+    "salles_diffusion" : [ 
+        {
+            "num_salle" : 1.0,
+            "nombre_place" : 150.0,
+            "date_diffusion" : ISODate("1994-10-15T00:00:00.000Z"),
+            "heure_diffusion" : "18h00",
+            "nombre_entrees" : 130.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0e3")
+        }, 
+        {
+            "num_salle" : 2.0,
+            "nombre_place" : 200.0,
+            "date_diffusion" : ISODate("2009-10-16T00:00:00.000Z"),
+            "heure_diffusion" : "20h30",
+            "nombre_entrees" : 180.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0e4")
+        }
+    ]
+}
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e5"),
+    "titre" : "Pulp Fiction",
+    "realisateur" : "Quentin Tarantino",
+    "duree" : 154.0,
+    "date_de_sortie" : ISODate("1994-09-10T00:00:00.000Z"),
+    "description" : "Les vies de deux tueurs à gages, d'un boxeur, de la femme d'un gangster et de deux bandits de restaurant s'entrelacent dans quatre histoires de violence et de rédemption...",
+    "categorie" : [ 
+        "Crime", 
+        "Comedie"
+    ],
+    "salles_diffusion" : [ 
+        {
+            "num_salle" : 1.0,
+            "nombre_place" : 250.0,
+            "date_diffusion" : ISODate("1994-09-11T00:00:00.000Z"),
+            "heure_diffusion" : "19h00",
+            "nombre_entrees" : 220.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0e7")
+        }, 
+        {
+            "num_salle" : 26.0,
+            "nombre_place" : 300.0,
+            "date_diffusion" : ISODate("2002-09-12T00:00:00.000Z"),
+            "heure_diffusion" : "21h30",
+            "nombre_entrees" : 270.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0e8")
+        }
+    ]
+}
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e6"),
+    "titre" : "Forrest Gump",
+    "realisateur" : "Robert Zemeckis",
+    "duree" : 142.0,
+    "date_de_sortie" : ISODate("1994-07-06T00:00:00.000Z"),
+    "description" : "Les présidences de Kennedy et Johnson, du Vietnam, du Watergate et d'autres histoires se déroulent à travers la perspective d'un homme de l'Alabama avec un QI de 75...",
+    "categorie" : [ 
+        "Drama", 
+        "Romance"
+    ],
+    "salles_diffusion" : [ 
+        {
+            "num_salle" : 1.0,
+            "nombre_place" : 350.0,
+            "date_diffusion" : ISODate("1994-07-07T00:00:00.000Z"),
+            "heure_diffusion" : "18h30",
+            "nombre_entrees" : 320.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0ea")
+        }, 
+        {
+            "num_salle" : 2.0,
+            "nombre_place" : 400.0,
+            "date_diffusion" : ISODate("1994-07-08T00:00:00.000Z"),
+            "heure_diffusion" : "21h00",
+            "nombre_entrees" : 370.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0ea")
+        }
+    ]
+}
+{
+    "_id" : ObjectId("60527b186168afabf7e0c0e7"),
+    "titre" : "Fight Club",
+    "realisateur" : "David Fincher",
+    "duree" : 139.0,
+    "date_de_sortie" : ISODate("1999-10-15T00:00:00.000Z"),
+    "description" : "Un employé de bureau insomniaque et un savonnier insouciant forment un club de combat clandestin qui évolue vers quelque chose de bien plus encore...",
+    "categorie" : [ 
+        "Thriller", 
+        "Drama", 
+        "Action"
+    ],
+    "salles_diffusion" : [ 
+        {
+            "num_salle" : 1.0,
+            "nombre_place" : 200.0,
+            "date_diffusion" : ISODate("1999-10-16T00:00:00.000Z"),
+            "heure_diffusion" : "19h30",
+            "nombre_entrees" : 180.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0e7")
+        }, 
+        {
+            "num_salle" : 17.0,
+            "nombre_place" : 250.0,
+            "date_diffusion" : ISODate("1999-10-17T00:00:00.000Z"),
+            "heure_diffusion" : "22h00",
+            "nombre_entrees" : 230.0,
+            "cinema_id" : ObjectId("60527b186168afabf7e0c0e8")
+        }
+    ]
+}
+*/
+
+
+// Afficher la liste des films qui ont été diffusé en 2010
+db.films.aggregate([
+  {
+    $unwind: "$salles_diffusion"
+  },
+  {
+    $match: {
+      "salles_diffusion.date_diffusion": {
+        $gte: ISODate("2010-01-01"),
+        $lte: ISODate("2010-12-31")
+      }
+    }
+  },
+  {
+    $group: {
+      _id: "$_id",
+      titre: { $first: "$titre" },
+      realisateur: { $first: "$realisateur" },
+      date_de_sortie: { $first: "$date_de_sortie" },
+      date_diffusion: { $first: "$salles_diffusion.date_diffusion" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      titre: 1,
+      realisateur: 1,
+      date_de_sortie: 1,
+      date_diffusion: 1
+    }
+  }
+])
+
+/* Resultat :
+{
+    "titre" : "Inception",
+    "realisateur" : "Christopher Nolan",
+    "date_de_sortie" : ISODate("2006-04-23T00:00:00.000Z"),
+    "date_diffusion" : ISODate("2010-07-21T00:00:00.000Z")
+}
+*/
+
+
+// Afficher la liste des films qui ont été diffusé entre 2009 et 2011
+db.films.aggregate([
+  {
+    $unwind: "$salles_diffusion"
+  },
+  {
+    $match: {
+      "salles_diffusion.date_diffusion": {
+        $gte: ISODate("2009-01-01"),
+        $lte: ISODate("2011-12-31")
+      }
+    }
+  },
+  {
+    $group: {
+      _id: "$_id",
+      titre: { $first: "$titre" },
+      realisateur: { $first: "$realisateur" },
+      date_de_sortie: { $first: "$date_de_sortie" },
+      date_diffusion: { $first: "$salles_diffusion.date_diffusion" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      titre: 1,
+      realisateur: 1,
+      date_de_sortie: 1,
+      date_diffusion: 1
+    }
+  }
+])
+
+/* Resultat : 
+{
+    "titre" : "The Shawshank Redemption",
+    "realisateur" : "Frank Darabont",
+    "date_de_sortie" : ISODate("1994-10-14T00:00:00.000Z"),
+    "date_diffusion" : ISODate("2009-10-16T00:00:00.000Z")
+}
+{
+    "titre" : "Inception",
+    "realisateur" : "Christopher Nolan",
+    "date_de_sortie" : ISODate("2006-04-23T00:00:00.000Z"),
+    "date_diffusion" : ISODate("2010-07-21T00:00:00.000Z")
+}
+*/
+
+
+
+// Regrouper le titre des films en fonction de leur catégorie et placer les resultats dans une collection nommée "categories"
+db.films.aggregate([
+  {
+    $unwind: "$categorie" // Dérouler le tableau des catégories pour chaque film
+  },
+  {
+    $group: {
+      _id: "$categorie", // Regrouper les films par catégorie
+      titres: { $addToSet: "$titre" } // Collecter les titres des films dans un ensemble pour éliminer les doublons
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      categorie: "$_id", // Renommer le champ _id en categorie
+      titres: 1 // Inclure les titres des films dans le résultat final
+    }
+  },
+  {
+    $out: "categories" // Placer les résultats dans la collection "categories"
+  }
+])
+
+/* Resultat : Création d'une collection "categories" : 
+{
+    "_id" : ObjectId("662bfdf7bff463c84bc1dde1"),
+    "titres" : [ 
+        "Forrest Gump", 
+        "Titanic"
+    ],
+    "categorie" : "Romance"
+}
+{
+    "_id" : ObjectId("662bfdf7bff463c84bc1dde2"),
+    "titres" : [ 
+        "Inception"
+    ],
+    "categorie" : "Science-fiction"
+}
+{
+    "_id" : ObjectId("662bfdf7bff463c84bc1dde3"),
+    "titres" : [ 
+        "The Dark Knight", 
+        "Fight Club", 
+        "Forrest Gump", 
+        "The Shawshank Redemption"
+    ],
+    "categorie" : "Drama"
+}
+{
+    "_id" : ObjectId("662bfdf7bff463c84bc1dde4"),
+    "titres" : [ 
+        "Pulp Fiction"
+    ],
+    "categorie" : "Comedie"
+}
+{
+    "_id" : ObjectId("662bfdf7bff463c84bc1dde5"),
+    "titres" : [ 
+        "Fight Club"
+    ],
+    "categorie" : "Thriller"
+}
+{
+    "_id" : ObjectId("662bfdf7bff463c84bc1dde6"),
+    "titres" : [ 
+        "The Dark Knight", 
+        "Fight Club", 
+        "Titanic"
+    ],
+    "categorie" : "Action"
+}
+{
+    "_id" : ObjectId("662bfdf7bff463c84bc1dde7"),
+    "titres" : [ 
+        "Pulp Fiction", 
+        "The Dark Knight"
+    ],
+    "categorie" : "Crime"
+}
+*/
+
+
+------------------------------------------------ REQUETE MAP-REDUCE ------------------------------------------------ 
+
+
+
+// Requete map reduce qui permet compter le nombre de film diffuser pour chaque cinémas
+
+// Fonction de mappage
+var mapFunction = function() {
+    this.salles_diffusion.forEach(function(salle) {
+        emit(salle.cinema_id, 1); // Émettre l'identifiant du cinéma avec la valeur 1 pour chaque film
+    });
+};
+
+// Fonction de réduction
+var reduceFunction = function(key, values) {
+    return Array.sum(values); // Additionner toutes les valeurs pour chaque cinéma
+};
+
+// Exécution de l'opération Map-Reduce
+var result = db.films.mapReduce(
+    mapFunction,
+    reduceFunction,
+    { out: { inline: 1 } } // Stocker les résultats en ligne
+);
+
+printjson(result);
+
+
+/* Resultat du Map-Reduce : 
+{
+	"results" : [
+		{
+			"_id" : ObjectId("60527b186168afabf7e0c0e4"),
+			"value" : 3
+		},
+		{
+			"_id" : ObjectId("60527b186168afabf7e0c0e3"),
+			"value" : 2
+		},
+		{
+			"_id" : ObjectId("60527b186168afabf7e0c0e8"),
+			"value" : 2
+		},
+		{
+			"_id" : ObjectId("60527b186168afabf7e0c0e7"),
+			"value" : 2
+		},
+		{
+			"_id" : ObjectId("60527b186168afabf7e0c0ea"),
+			"value" : 2
+		},
+		{
+			"_id" : ObjectId("60527b186168afabf7e0c0e5"),
+			"value" : 2
+		}
+	],
+	"ok" : 1
+}
+*/
+
+
+

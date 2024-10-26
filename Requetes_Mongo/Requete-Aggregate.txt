@@ -1,0 +1,164 @@
+// Calculer la moyenne des notes attribuées à chaque film
+db.avis.aggregate([
+{ $group: { _id: "$film_id", moyenne_note: { $avg: "$note" } } }
+])
+
+
+// Afficher le nom des cinémas où a été diffusée le film "Titanic"
+db.films.aggregate([
+  // Filtre pour les documents correspondant au film "Titanic"
+  { $match: { titre: "Titanic" } },
+  // Développe le tableau des salles_diffusion pour chaque film
+  { $unwind: "$salles_diffusion" },
+  // Jointure avec la collection des cinémas pour récupérer le nom
+  {
+    $lookup: {
+      from: "cinemas",
+      localField: "salles_diffusion.cinema_id",
+      foreignField: "_id",
+      as: "cinema"
+    }
+  },
+  // Projette uniquement le nom des cinémas
+  { $project: { _id: 0, "cinema.nom": 1 } }
+])
+
+
+// Afficher les titres des films qui ont été diffusé à dijon (sans les doublons)
+db.films.aggregate([
+  {
+    $lookup: {
+      from: "cinemas",
+      localField: "salles_diffusion.cinema_id",
+      foreignField: "_id",
+      as: "cinema"
+    }
+  },
+  {
+    $match: {
+      "cinema.ville": "Dijon"
+    }
+  },
+  {
+    $group: {
+      _id: "$_id",
+      titre: { $first: "$titre" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      titre: 1
+    }
+  }
+])
+
+
+// Afficher tous les films qui sont sorties entre le 1er janvier 1990 et le 31 decembre 2000 
+db.films.aggregate([
+  {
+    $match: {
+      "date_de_sortie": {
+        $gte: ISODate("1990-01-01"),
+        $lte: ISODate("2000-12-31")
+      }
+    }
+  }
+])
+
+
+// Afficher la liste des films qui ont été diffusé en 2010
+db.films.aggregate([
+  {
+    $unwind: "$salles_diffusion"
+  },
+  {
+    $match: {
+      "salles_diffusion.date_diffusion": {
+        $gte: ISODate("2010-01-01"),
+        $lte: ISODate("2010-12-31")
+      }
+    }
+  },
+  {
+    $group: {
+      _id: "$_id",
+      titre: { $first: "$titre" },
+      realisateur: { $first: "$realisateur" },
+      date_de_sortie: { $first: "$date_de_sortie" },
+      date_diffusion: { $first: "$salles_diffusion.date_diffusion" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      titre: 1,
+      realisateur: 1,
+      date_de_sortie: 1,
+      date_diffusion: 1
+    }
+  }
+])
+
+
+
+// Afficher la liste des films qui ont été diffusé entre 2009 et 2011
+db.films.aggregate([
+  {
+    $unwind: "$salles_diffusion"
+  },
+  {
+    $match: {
+      "salles_diffusion.date_diffusion": {
+        $gte: ISODate("2009-01-01"),
+        $lte: ISODate("2011-12-31")
+      }
+    }
+  },
+  {
+    $group: {
+      _id: "$_id",
+      titre: { $first: "$titre" },
+      realisateur: { $first: "$realisateur" },
+      date_de_sortie: { $first: "$date_de_sortie" },
+      date_diffusion: { $first: "$salles_diffusion.date_diffusion" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      titre: 1,
+      realisateur: 1,
+      date_de_sortie: 1,
+      date_diffusion: 1
+    }
+  }
+])
+
+
+
+// Regrouper le titre des films en fonction de leur catégorie et placer les resultats dans une collection nommée "categories"
+db.films.aggregate([
+  {
+    $unwind: "$categorie" // Dérouler le tableau des catégories pour chaque film
+  },
+  {
+    $group: {
+      _id: "$categorie", // Regrouper les films par catégorie
+      titres: { $addToSet: "$titre" } // Collecter les titres des films dans un ensemble pour éliminer les doublons
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      categorie: "$_id", // Renommer le champ _id en categorie
+      titres: 1 // Inclure les titres des films dans le résultat final
+    }
+  },
+  {
+    $out: "categories" // Placer les résultats dans la collection "categories"
+  }
+])
+
+
+

@@ -1,0 +1,37 @@
+//*************************** delete films 
+
+// Exemple de requete deleteOne() - Requête 1
+db.films.deleteOne({ "titre": "Inception" })
+
+// Exemple de requete deleteMany() - Requête 2
+db.films.deleteMany({ "duree": { $lte: 140 } })
+
+// Exemple de requete deleteMany() - Requête 3
+db.films.deleteMany({ "date_de_sortie": { $lt: ISODate("2000-01-01T00:00:00Z") } })
+
+
+
+
+//*************************** delete cinemas
+
+// deleteOne() - Requête 1
+db.cinemas.deleteOne({ "nom": "Cinéma Nouveau" })
+
+// deleteMany() - Requête 2
+db.cinemas.deleteMany({ "ville": "Lyon" })
+
+
+
+
+//*************************** delete avis
+
+// deleteOne() - Requête 1
+db.avis.deleteOne({ "nom_utilisateur": "emma" })
+
+// deleteMany() - Requête 2
+db.avis.deleteMany({ "reseau_social": "Reddit" })
+
+// deleteMany() - Requête 3
+db.avis.deleteMany({ "date_commentaire": { $lt: ISODate("2023-01-01T00:00:00Z") } })
+
+

@@ -1,0 +1,30 @@
+// Requête qui affiche le nom de tous les cinémas de Dijon :
+db.cinemas.find({ ville: "Dijon" }, { nom: 1, _id: 0 })
+
+// Récupérer tous les cinémas situés dans une ville donnée
+db.cinemas.find({ ville: "Paris" })
+
+// Requête qui affiche tous les commentaires avec une note inférieure à 3 :
+db.avis.find({ note: { $lt: 3 } })
+
+
+
+// Requête qui affiche le nom de tous les cinémas :
+db.cinemas.find({}, { nom: 1, _id: 0 })
+
+// Requête qui affiche toutes les infos du film "Titanic" :
+db.films.find({ titre: "Titanic" })
+
+// Requête qui affiche le titre, le réalisateur, la durée et les catégories du film "Inception" :
+db.films.find({ titre: "Inception" }, { titre: 1, realisateur: 1, duree: 1, categorie: 1, _id: 0 })
+
+// Requête qui affiche tous les commentaires avec une note égale à 5 :
+db.avis.find({ note: 5})
+
+// Requête qui affiche tous les films qui durent entre 60min et 140min :
+db.films.find({ duree: { $gte: 60, $lte: 140 } })
+
+// Requête qui affiche tous les films qui durent plus de 3 heures :
+db.films.find({ duree: { $gt: 180 } })
+
+

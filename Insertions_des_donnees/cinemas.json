@@ -1,0 +1,39 @@
+db.cinemas.insertMany([
+    {
+        "_id": ObjectId("60527b186168afabf7e0c0e3"),
+        "nom": "Cinéma Olympia",
+        "adresse": "16 Av. Maréchal Foch",
+        "ville": "Dijon"
+    },
+    {
+        "_id": ObjectId("60527b186168afabf7e0c0e4"),
+        "nom": "Pathé Dijon",
+        "adresse": "12 parvis de l’UNESCO",
+        "ville": "Dijon"
+    },
+    {
+        "_id": ObjectId("60527b186168afabf7e0c0e5"),
+        "nom": "Ciné Cap Vert",
+        "adresse": "1 Rue du Cap Vert",
+        "ville": "Quetigny"
+    },
+    {
+      "_id": ObjectId("60527b186168afabf7e0c0e7"),
+      "nom": "Gaumont Opéra Capucines",
+      "adresse": "2 Boulevard des Capucines",
+      "ville": "Paris"
+    },
+    {
+      "_id": ObjectId("60527b186168afabf7e0c0e8"),
+      "nom": "Pathé Vieux Port",
+      "adresse": "36 Quai Rive Neuve",
+      "ville": "Marseille"
+    },
+    {
+      "_id": ObjectId("60527b186168afabf7e0c0ea"),
+      "nom": "Pathé Bellecour",
+      "adresse": "79 Rue de la République",
+      "ville": "Lyon"
+    }
+]];
+  

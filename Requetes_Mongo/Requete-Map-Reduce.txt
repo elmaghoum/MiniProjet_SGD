@@ -1,0 +1,24 @@
+// Requete map reduce qui permet compter le nombre de film diffuser pour chaque cinémas
+
+// Fonction de mappage
+var mapFunction = function() {
+    this.salles_diffusion.forEach(function(salle) {
+        emit(salle.cinema_id, 1); // Émettre l'identifiant du cinéma avec la valeur 1 pour chaque film
+    });
+};
+
+// Fonction de réduction
+var reduceFunction = function(key, values) {
+    return Array.sum(values); // Additionner toutes les valeurs pour chaque cinéma
+};
+
+// Exécution de l'opération Map-Reduce
+var result = db.films.mapReduce(
+    mapFunction,
+    reduceFunction,
+    { out: { inline: 1 } } // Stocker les résultats en ligne
+);
+
+printjson(result);
+
+

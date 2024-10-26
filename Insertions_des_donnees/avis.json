@@ -1,0 +1,93 @@
+db.avis.insertMany([[
+    {
+        "_id": ObjectId("65f6ccf30d6c607d7126f654"),
+        "film_id": ObjectId("60527b186168afabf7e0c0e1"),
+        "nom_utilisateur": "thomas",
+        "commentaire": "Un film incroyable !",
+        "note": 4.8,
+        "reseau_social": "Twitter",
+        "date_commentaire": ISODate("2023-10-15T00:00:00Z")
+    },
+    {
+        "_id": ObjectId("65f6ccf30d6c607d7126f655"),
+        "film_id": ObjectId("60527b186168afabf7e0c0e2"),
+        "nom_utilisateur": "kevin",
+        "commentaire": "Un chef-d'oeuvre absolu !",
+        "note": 5,
+        "reseau_social": "Facebook",
+        "date_commentaire": ISODate("2011-01-07T00:00:00Z")
+    },
+    {
+        "_id": ObjectId("65f6ccf30d6c607d7126f656"),
+        "film_id": ObjectId("60527b186168afabf7e0c0e3"),
+        "nom_utilisateur": "emma",
+        "commentaire": "Film d'action tres bien, mais aurait pu etre mieux, dommage....",
+        "note": 3.5,
+        "reseau_social": "Instagram",
+        "date_commentaire": ISODate("2015-03-12T00:00:00Z")
+    },
+    {
+        "_id": ObjectId("65f6ccf30d6c607d7126f657"),
+        "film_id": ObjectId("60527b186168afabf7e0c0e4"),
+        "nom_utilisateur": "lucas",
+        "commentaire": "Trop long ! ",
+        "note": 2,
+        "reseau_social": "Twitter",
+        "date_commentaire": ISODate("2012-08-29T00:00:00Z")
+    },
+    {
+        "_id": ObjectId("65f6ccf30d6c607d7126f658"),
+        "film_id": ObjectId("60527b186168afabf7e0c0e5"),
+        "nom_utilisateur": "sophie",
+        "commentaire": "Un classique intemporel du cinéma !",
+        "note": 4.9,
+        "reseau_social": "Facebook",
+        "date_commentaire": ISODate("2018-06-05T00:00:00Z")
+    },
+    {
+        "_id": ObjectId("65f6ccf30d6c607d7126f659"),
+        "film_id": ObjectId("60527b186168afabf7e0c0e6"),
+        "nom_utilisateur": "alex",
+        "commentaire": "Une épopée émouvante à travers l'Amérique !",
+        "note": 4.8,
+        "reseau_social": "Instagram",
+        "date_commentaire": ISODate("2013-09-21T00:00:00Z")
+    },
+    {
+        "_id": ObjectId("65f6ccf30d6c607d7126f65a"),
+        "film_id": ObjectId("60527b186168afabf7e0c0e7"),
+        "nom_utilisateur": "julia",
+        "commentaire": "Un film qui vous laisse sans voix !",
+        "note": 4,
+        "reseau_social": "Twitter",
+        "date_commentaire": ISODate("2010-12-10T00:00:00Z")
+    },
+    {
+        "_id": ObjectId("65f6ccf30d6c607d7126f65b"),
+        "film_id": ObjectId("60527b186168afabf7e0c0e2"),
+        "nom_utilisateur": "adam",
+        "commentaire": "Une experience cinematographique revolutionnaire !",
+        "note": 5,
+        "reseau_social": "Facebook",
+        "date_commentaire": ISODate("2017-05-18T00:00:00Z")
+    },
+    {
+        "_id": ObjectId("65f6ccf30d6c607d7126f65c"),
+        "film_id": ObjectId("60527b186168afabf7e0c0e4"),
+        "nom_utilisateur": "théo",
+        "commentaire": "Très bonne recommendation",
+        "note": 4,
+        "reseau_social": "Instagram",
+        "date_commentaire": ISODate("2016-11-09T00:00:00Z")
+    },
+    {
+        "_id": ObjectId("65f6ccf30d6c607d7126f65d"),
+        "film_id": ObjectId("60527b186168afabf7e0c0e5"),
+        "nom_utilisateur": "maxime",
+        "commentaire": "Un classique absolu du cinéma !",
+        "note": 3,
+        "reseau_social": "Twitter",
+        "date_commentaire": ISODate("2014-06-27T00:00:00Z")
+    }
+]);
+
