@@ -1,4 +1,4 @@
-# MiniProjet de SGD sur MongoDB
+# MiniProjet de Systèmes de gestion de documents (SGD) sur MongoDB - UB - 2023/2024
 
 # Contexte
 
@@ -50,13 +50,13 @@ Cette collection est composée des attributs suivants :
 - **ville** : Ville où se trouve le cinéma.
 
 
-### Remarque
+# Remarque
 Pour réaliser un lien/association entre deux collections on utilisera un attribut comment entre les deux collections.
 — Attribut commum entre la collection Films et la collection Avis : l’id du film
 — Attribut commum entre la collection Films et la collection Cinemas : l’id du cinéma
 — Attribut commum entre la collection Avis et la collection Cinemas : Aucun. Il faudra passé par la collection Film.
 
-### Exemple de fonctionnalités
+# Exemple de fonctionnalités
 Afin de realiser de l’analyse décisionnelle nous aurons besoins des fonctionnalités suivantes :
 — Afficher la liste des films, des cinémas et des avis.
 — Afficher les détails (titre, durée, catégorie(s), ...), (nom du cinéma, adresse, ...), (note, nom du réseau social).
@@ -67,7 +67,7 @@ Afin de realiser de l’analyse décisionnelle nous aurons besoins des fonctionn
 — Afficher la moyenne des notes attribuées à chaque film.
 — Etc
 
-### Exemple de Requete MongoDB
+# Exemple de Requete MongoDB
 Repertoire Insertions_des_donnees contient les 3 collections de travail :
 	- Scripts d'insertion (insertMany) des collections: avis, cinemas, films 
 
@@ -83,7 +83,7 @@ Repertoire Scripts_Python contient des script de requêtes Python:
 	- Sans pipiline dans le fichier "req_python_sans_pipeline.py"
 	- Avec pipiline dans le fichier "req_python_pipeline.py" 
 
-### Conclusion
+# Conclusion
 
 Bien que nous connaissions déjà un peu MongoDB dès le départ, cela ne nous a pas empêché de rencontrer quelques difficultés. Nos problèmes étaient surtout liés à la compréhension et à la formalisation du sujet, mais ceux-ci ont été rapidement résolus lors de nos échanges par e-mail et de nos discussions en TD avec nos enseignants. 
 
@@ -92,7 +92,7 @@ En conclusion, ce projet a été riche en apprentissage. Il nous a permis de ren
 
 Et bien sûr, ce projet nous a permis de mettre un pied (rapide et général) dans le monde du décisionnel et de la BI (Business Intelligence).
 
-
 MongoDB s’ajoutera désormais à notre arsenal d’outils pour notre formation pédagogique et professionnelle.
 
 
+--- Mai 2024
